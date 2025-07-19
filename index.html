@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokémon Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gradient-to-br from-pink-300 via-blue-200 to-purple-400 min-h-screen flex items-center justify-center p-4">
+
+  <main class="glass-card max-w-md w-full border-2 border-blue-200 relative">
+    <!-- Header -->
+    <header class="flex items-center justify-between px-6 py-4 rounded-t-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 shadow-lg">
+      <h1 class="text-2xl font-extrabold text-white tracking-wide drop-shadow-lg flex items-center gap-2">
+        <span class="inline-block animate-bounce">✨</span>Pokémon Generator
+      </h1>
+      <button id="favorites-btn" aria-label="Show favorites" class="text-white text-3xl hover:text-yellow-300 transition drop-shadow-lg">
+        &#10084;
+      </button>
+    </header>
+
+    <!-- Pokémon Display Area -->
+    <section id="pokemon-container"
+      class="flex flex-col items-center px-6 py-8 space-y-4 min-h-[400px] w-full text-left break-words"
+      aria-live="polite">
+      <!-- Pokémon info will be injected here -->
+    </section>
+
+    <!-- Controls -->
+    <footer class="rounded-b-2xl px-6 py-6 space-y-4 glass-footer">
+      <form id="search-form" class="flex flex-col space-y-3">
+        <label for="search-input" class="sr-only">Search Pokémon by name or ID</label>
+        <div class="relative w-full">
+          <input
+            id="search-input"
+            name="query"
+            type="text"
+            placeholder="🔍 Search Pokémon by name or ID"
+            class="modern-input"
+            autocomplete="off"
+            aria-autocomplete="list"
+            aria-controls="suggest-box"
+            aria-expanded="false"
+            aria-activedescendant=""
+            role="combobox"
+          />
+          <!-- Autosuggest dropdown will be injected here by JS -->
+        </div>
+        <div id="recent-searches" class="flex flex-wrap gap-2 mt-1"></div>
+        <button
+          type="submit"
+          id="search-btn"
+          class="modern-btn bg-gradient-to-r from-green-400 via-blue-400 to-purple-400"
+        >
+          Search
+        </button>
+      </form>
+      <button
+        id="generate-btn"
+        type="button"
+        class="modern-btn bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400"
+      >
+        🎲 Generate Random
+      </button>
+      <p id="search-error" class="text-red-500 text-sm mt-2 hidden text-center" role="alert"></p>
+    </footer>
+  </main>
+
+  <!-- Favorites Modal -->
+  <div id="favorites-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+    <div class="glass-modal rounded-xl shadow-2xl p-6 max-w-sm w-full relative">
+      <button id="close-favorites" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-3xl" aria-label="Close">&times;</button>
+      <h2 class="text-xl font-extrabold mb-4 text-blue-700 tracking-wide">Favorite Pokémon</h2>
+      <ul id="favorites-list" class="space-y-2"></ul>
+      <p id="no-favorites" class="text-gray-500 text-center mt-4 hidden">No favorites yet.</p>
+    </div>
+  </div>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
